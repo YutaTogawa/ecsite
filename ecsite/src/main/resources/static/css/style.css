@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+/* リセットCSS */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* typeがnumberのinputを右寄せに設定 */
+input[type="number"] {
+  text-align: right;
+}
+
+/* headerをflexbox コンテナに設定 */
+header {
+  display: flex;
+  background: green;
+  color: white;
+  height: 70px;
+}
+
+header h1 {
+  margin: 0;
+  margin-left: 20px;
+}
+
+header div {
+  margin-left: auto;
+  margin-right: 20px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* ユーザー名とパスワードのinputの幅を設定 */
+input[name=userName] {
+  width: 100px;
+}
+
+input[name=password] {
+  width: 100px;
+}
+
+/* tableのデフォルトデザインを設定 */
+table {
+  margin: 20px;
+  border-collapse: collapse;
+}
+
+/* table内のtdとth の枠線を設定 */
+table td,
+table th {
+  border: 1px solid grey;
+}
+
+/* th (テーブルのヘッダー）を背景色：緑、文字色：白で設定 */
+th {
+  background: green;
+  color: white;
+}
+
+/* th内の子要素たちについて、それぞれの幅を設定 */
+th:nth-child(1) {
+  width: 30px;
+}
+
+th:nth-child(2) {
+  width: 150px;
+}
+
+th:nth-child(3) {
+  width: 120px;
+}
+
+th:nth-child(4) {
+  width: 60px;
+}
+
+th:nth-child(5) {
+  width: 120px;
+}
+
+/* td内の子要素たちについて、それぞれの文字寄せ方向を設定(右寄せ、左寄せ、中央寄せ) */
+td:nth-child(1) {
+  text-align: right;
+}
+
+td:nth-child(2) {
+  text-align: left;
+}
+
+td:nth-child(3) {
+  text-align: right;
+}
+
+td:nth-child(4) {
+  text-align: center;
+}
+
+td:nth-child(5) {
+  text-align: center;
+}
+
+/* td内にあるinputの幅と、テキストの右寄せを設定 */
+td input {
+  width: 85%;
+  text-align: right;
+}
+
+/* カートテーブル、履歴テーブルの th に対してデザインを設定 */
+table#cart thead tr th,
+table#history thead tr th {
+  background: #c0c0c0 !important;
+  color: black;
+}
+
+/* 履歴テーブルのthead内のtrと、thの子要素に対してデザインを設定 */
+table#history thead tr th:nth-child(1) {
+  width: 150px;
+}
+
+table#history thead tr th:nth-child(2) {
+  width: 65px;
+}
+
+table#history thead tr th:nth-child(3) {
+  width: 250px;
+}
+
+/* 履歴テーブルのtbody内のtrと、tdの子要素に対してデザインを設定 */
+table#history tbody tr td:nth-child(1) {
+  padding: 0 5px;
+  text-align: left;
+}
+
+table#history tbody tr td:nth-child(2) {
+  padding: 0 5px;
+  text-align: right;
+}
+
+table#history tbody tr td:nth-child(3) {
+  padding: 0 5px;
+  text-align: left;
+}
+
+/* 管理者用 商品登録ページのデザインを設定 */
+#adminPage {
+  margin: 0 30px;
+}
+
+
+/* 管理者用 商品テーブルのthead内のtrと、thの子要素に対してデザインを設定 */
+table#adminTable thead tr th:nth-child(1) {
+  width: 50px;
+}
+
+table#adminTable thead tr th:nth-child(2) {
+  width: 150px;
+}
+
+table#adminTable thead tr th:nth-child(3) {
+  width: 100px;
+}
+
+table#adminTable thead tr th:nth-child(4) {
+  width: 80px;
+}
+
+/* 管理者用 商品テーブルのtbody内のtrと、tdの子要素に対してデザインを設定 */
+table#adminTable tbody tr td:nth-child(1) {
+  padding: 0 5px;
+  text-align: right;
+}
+
+table#adminTable tbody tr td:nth-child(2) {
+  padding: 0 5px;
+  text-align: left;
+}
+
+table#adminTable tbody tr td:nth-child(3) {
+  padding: 0 5px;
+  text-align: right;
+}
+
+table#adminTable tbody tr td:nth-child(4) {
+  text-align: center;
+}
+
+/* エラーメッセージの文字色を赤にするための設定 */
+.error {
+  color: red;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/style.css" rel="stylesheet" />
+  <title>ECサイト</title>
+  
+  <script>
+  /*
+   * 画面表示時(onLoad)に動作する処理
+   */
+   document.addEventListener("DOMContentLoaded", event => {
+     console.log("画面描画時"); 
+     // 商品情報の「削除ボタン」をすべて抽出し、deleteBtnsに格納する
+     const deleteBtns = document.querySelectorAll(".deleteBtn");
+     
+     deleteBtns.forEach(btn => {
+       btn.addEventListener("click", event => {
+         let isOk = confirm("削除してもよろしいですか？");
+         if(!isOk){ return; }
+         
+         // event.target(削除ボタン)の親要素の更に親要素から、td要素を全て抽出し、tdListに格納する
+         const tdList = event.target.parentElement.parentElement.querySelectorAll("td");
+         // deleteGoods 関数を呼び出し、商品情報を削除する
+         deleteGoods(tdList);
+       });
+     });
+  });
+  
+  /*
+   * deleteGoods関数
+   * 削除ボタンのclickイベントにより呼び出される
+   */
+  function deleteGoods(tdList) {
+    console.log("商品削除処理呼び出し");
+    // JavaにPOST送信するオブジェクトを取得・設定する
+    const postObj = { "id": tdList.item(0).innerText };
+    
+    fetch("/ecsite/admin/api/deleteGoods", {
+      method: "POST",
+      headers: { 'Content-Type': "application/json" },
+      body: JSON.stringify(postObj)
+    })
+    .then(response => response.text())
+    .then(result => {
+      alert(`商品[ ${ tdList.item(1).innerText } ] を削除しました。`);
+      tdList.item(0).parentElement.remove();
+    })
+    .catch(error => {
+      console.error("Error: ", error);
+    });
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>My EC Site -- 管理者ページ</h1>
+  </header>
+
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>ID</th><th>商品名</th><th>価格</th><th>削除</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr th:each="item: ${goods}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.goodsName}"></td>
+        <td th:text="${item.price}"></td>
+        <td><button class="deleteBtn" type="submit">削除</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form name="goodsForm" id="adminPage" method="post" action="/ecsite/admin/goodsMst">
+      <button type="submit" th:if="${userName != null}">新規商品追加</button>
+      <input type="hidden" name="userName" th:value="${userName}">
+      <input type="hidden" name="password" th:value="${password}">
+  </form>
+
+</body>
+</html>
